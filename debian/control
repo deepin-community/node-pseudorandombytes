@@ -1,0 +1,35 @@
+Source: node-pseudorandombytes
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , ent <!nocheck>
+ , node-create-hash <!nocheck>
+ , node-create-hmac <!nocheck>
+ , node-randombytes <!nocheck>
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-pseudorandombytes
+Vcs-Git: https://salsa.debian.org/js-team/node-pseudorandombytes.git
+Homepage: https://github.com/crypto-browserify/pseudorandombytes
+Rules-Requires-Root: no
+
+Package: node-pseudorandombytes
+Architecture: all
+Depends: ${misc:Depends}
+ , node-create-hash
+ , node-create-hmac
+ , node-randombytes
+Description: crypto.pseudoRandomBytes but for use with browserify
+ In node it just returns crypto.pseudoRandomBytes but in the browser it uses
+ randombytes module if available else it seeds a prng based on chacha20poly1305
+ .
+ To be clear there is no legitimate reason for you ever to want to use this.
+ The algorithms used in this module are **NOT** suitable for cryptographical
+ usage.
+ .
+ This package is provided **ONLY** to run tests of node-crypto-browserify.
+ .
+ Node.js is an event-based server-side JavaScript engine.

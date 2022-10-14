@@ -1,0 +1,25 @@
+Description: fix Buffer use
+Author: Yadd <yadd@debian.org>
+Forwarded: no
+Last-Update: 2021-10-11
+
+--- a/chacha.js
++++ b/chacha.js
+@@ -15,7 +15,7 @@
+ 
+   this.cachePos = 64;
+   this.buffer = new Uint32Array(16);
+-  this.output = new Buffer(64);
++  this.output = new Buffer.alloc(64);
+ }
+ 
+ function quarterRound(x, a, b, c, d) {
+@@ -57,7 +57,7 @@
+ };
+ Chacha20.prototype.getBytes = function(len) {
+   var dpos = 0;
+-  var dst = new Buffer(len);
++  var dst = new Buffer.alloc(len);
+   var cacheLen = 64 - this.cachePos;
+   if (cacheLen) {
+     if (cacheLen >= len) {
